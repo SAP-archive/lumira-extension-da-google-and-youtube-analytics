@@ -6,8 +6,6 @@ define(function() {
     	var list = null;
 
 		var reportType = "na";
-    	//bDate = ExtensionUtils.calcLastNDaysFromToday(30);
-    	//eDate = ExtensionUtils.calcLastNDaysFromToday(0);
 		if (sap.ui.getCore().byId("startDatePicker")!=null){
 	        	sap.ui.getCore().byId("startDatePicker").destroy();
 	    }
@@ -24,9 +22,7 @@ define(function() {
 			value: {type: new sap.ui.model.type.Date({pattern: "yyyy-MM-dd", style: "short", strictParsing: true})}
 		})
     	oEndDatePicker.setYyyymmdd(ExtensionUtils.calcLastNDaysFromToday(0));
-		//var oStartDatePicker = new sap.ui.commons.DatePicker("startDatePicker", {yyyymmdd:"20100101",tooltip:"Select Start Date", change:handleChange});
 		var oStartDateLabel = new sap.ui.commons.Label({ text: "Start Date:"});
-		//var oEndDatePicker = new sap.ui.commons.DatePicker("endDatePicker", {yyyymmdd:"20100101",tooltip:"Select Start Date", change:handleChange});
 		var oEndDateLabel = new sap.ui.commons.Label({ text: "End Date:"});
 		var dateLayout = new sap.ui.commons.layout.MatrixLayout({
 	            layoutFixed : false,
@@ -96,7 +92,6 @@ define(function() {
             editable: true,
             width: "100%",
             value: "",
-           // liveChange: $.proxy(this.oController.tfDatasetNameChanged, this.oController),
             maxLength: 100
         });
         oDataSetNameInput.addStyleClass("gaMainLayoutBorders gaTextStyle gaDataSetName");
@@ -114,13 +109,13 @@ define(function() {
         row.addCell(new sap.ui.commons.layout.MatrixLayoutCell({content:mGAMetaViewLabel}));
         row.addCell(new sap.ui.commons.layout.MatrixLayoutCell({content:oGASelect}));
         dsAvailLayout.addRow(row);
-       // dsAvailLayout.createRow(mGAMetaViewLabel, oBwServer);
+
         row  = new sap.ui.commons.layout.MatrixLayoutRow();
         row.addStyleClass("dsLayoutRow");
         row.addCell(new sap.ui.commons.layout.MatrixLayoutCell({content:dsAvailLayout}));
         row.addCell(new sap.ui.commons.layout.MatrixLayoutCell({content:dateLayout}));
         mGAMetaViewLayout.addRow(row);
-       // mGAMetaViewLayout.createRow(dsAvailLayout, oDatasetName);
+
 		if ($("#srcCont")!=null){
 			$("#srcCont").remove();
 		}
@@ -159,7 +154,7 @@ define(function() {
         var searchId = mGAMetaSearch.getId();
 
         mGAMetaSearch.onAfterRendering = function () {
-            $('#' + searchId + '-tf-input').attr('placeholder', "Find"); //TODO LOCALIZATION
+            $('#' + searchId + '-tf-input').attr('placeholder', "Find"); 
         };
         mGAMetaViewLayout.createRow(mGAMetaSearch, oDataSetNameInput);
         mGAMetaViewLayout.createRow(src, dst);
@@ -321,22 +316,9 @@ define(function() {
         if (acquisitionState.info) {
             var info = JSON.parse(acquisitionState.info);
             
-           // datasetTxt.setValue(info.csv);
-           // metadataTxt.setValue(info.metadata);
             if (info.datasetState) {
             	selectedData = info.datasetState;
             	selectedDataSrc = info.datasetType;
-            	
-            /*	if (workflow=="EDIT") {
-	            	var oCombo = sap.ui.getCore().byId("oGASelect");
-	            	if (oCombo.getItems()[0].getId()==selectedDataSrc) {
-	            		sap.ui.getCore().byId("oGASelect").setSelectedItemId(t.getItems()[0].getId());
-	            	}
-	            	if (oCombo.getItems()[1].getId()==selectedDataSrc) {
-	            		sap.ui.getCore().byId("oGASelect").setSelectedItemId(t.getItems()[1].getId());
-	            	}
-	            	oCombo.fireChange();
-            	}*/
             }
             envProperties.datasetName = info.datasetName;
         }
@@ -382,8 +364,6 @@ define(function() {
           		  return distinctValues;
 	          	}, []);
         	}
-
-        	//gaMetadataLbl.setText(resp);
           
 		$('#srcCont').on("changed.jstree", function (e, data) {
 					if(data.selected.length) {
@@ -406,9 +386,6 @@ define(function() {
 			}).jstree({
 				'core' : {
 				    'check_callback': function(operation, node, node_parent, node_position, more) {
-	                    // operation can be 'create_node', 'rename_node', 'delete_node', 'move_node' or 'copy_node'
-	                    // in case of 'rename_node' node_position is filled with the new node name
-
 	                    if (operation === "move_node") {
 	                    	return false;
 							/* if (node.icon=="dim") {
@@ -480,11 +457,6 @@ define(function() {
 				              {class:"jstree-draggable",id:'msrtarget',text:"Metrics"},
 				              {class:"jstree-draggable",id:'flttarget',text:"Filters"},
 				              {class:"jstree-draggable",id:'srttarget',text:"Sort"}]
-				/*var tree  = $("#trgCont").jstree();
-        		vat strData = "";
-        		var data = JSON.parse(strData);
-	        	tree.settings.core.data=data;
-	        	tree.refresh();*/
 			}
 			$('#trgCont').on("changed.jstree", function (e, data) {
 				if(data.selected.length) {
@@ -497,9 +469,6 @@ define(function() {
 			}).jstree({
 				'core' : {
 					'check_callback': function(operation, node, node_parent, node_position, more) {
-	                    // operation can be 'create_node', 'rename_node', 'delete_node', 'move_node' or 'copy_node'
-	                    // in case of 'rename_node' node_position is filled with the new node name
-
 	                    if (operation === "move_node") {
 	                    	return false;
 							/* if (node.icon=="dim") {
@@ -562,14 +531,9 @@ define(function() {
 	                },
 	                "drag_stop" : function (data) {
 	                    if(data.o.attr("rel") === "ds") {
-	                      //update chart with new data here?
-	                      //using data.o.attr("id")
 	                     	var dragged = $(data.o);
 	        				var dropTarget = data.r;
 	
-	        			//	var fnc = dropTarget.droppable('option','drop');
-	
-	        			//	fnc(null,data); 
 	                    }
 	                }
 	            },

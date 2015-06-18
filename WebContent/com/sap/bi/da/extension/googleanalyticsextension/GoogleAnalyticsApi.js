@@ -64,20 +64,6 @@ define(function() {
 	    			}
     			}
     		);
-    		//gapi.auth.authorize({client_id: ExtensionUtils.getClientId(), scope: ExtensionUtils.getScopes(), immediate: false}, 
-    		/*gapi.auth.authorize({client_id: ExtensionUtils.getClientId(), scope: ExtensionUtils.getScopes(), immediate: false},
-				function(authResult){
-	    			if (authResult && !authResult.error) {
-	    				gapi.client.load('youtube', 'v3', function() {
-	    				      gapi.client.load('youtubeAnalytics', 'v1', function() {
-	    				    	  gapi.client.load(ExtensionUtils.getApiName(), ExtensionUtils.getApiVersion(), readyFunc);
-	    				      });
-	    				    });
-	        			
-	        		} else {
-	        			this.handleUnauthorized();
-	        		}
-	    	});*/
     	};
     	
     	this.getAccounts = function(callback) {
@@ -193,8 +179,7 @@ define(function() {
     	};
     	
     	this.handleUnauthorized = function () {
-    		//ui to let user know
-    		console.log("Please authorize this script to access Google Analytics.");
+    		sap.ui.commons.MessageBox.alert("Please authorize this script to access Google Analytics.");
     	};
 
     	this.handleAuthResult = function (authResult) {

@@ -29,7 +29,6 @@ define(["service!sap.bi.da.extension.sdk.clientRequestService", "GoogleAnalytics
             uiController = new GoogleAnalyticsExtensionUIController(acquisitionState, oDeferred, fServiceCall, workflow, gaApi, ExtensionUtils);
             
             var funcApiReady = function () {
-            	//determine ds type == yes i know but if user did not select a channel then no need to show youtube
             	var dsCount = 0;
             	var oCombo = sap.ui.getCore().byId("oGASelect");
             	var bDatePicker = sap.ui.getCore().byId("startDatePicker");
