@@ -17,8 +17,7 @@ You also need to add a javascript origin (e.g. http://127.0.0.1:8082)
 Once you have both add them in:
 
 ‘WebContent\com\sap\bi\da\extension\googleanalyticsextension\ExtensionUtils.js’ like this:
- 
-
+![My image](https://github.com/SAP/lumira-extension-da-google-and-youtube-analytics/blob/master/imagesforreadme/s9.png)
 
 * Back in SAP Lumira Desktop Select `File > New Dataset`
 * Select `Google Analytics and YouTube Analytics` from the list of connectors:
