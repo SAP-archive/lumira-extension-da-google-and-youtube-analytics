@@ -13,11 +13,11 @@ by going to: https://console.developers.google.com/
 
 You will need to create a Public API access Key and Create a Client ID for web applications.
 
-CLIENT_ID will look like this:
-316210287153-i8h2lo6c0r03dv1gv6nt00l9ouhbvhr1.apps.googleusercontent.com (NOT A REAL ID, DO NOT USE)
+<b>CLIENT_ID will look like this:</b>
+316210287153-i8h2lo6c0r03dv1gv6nt00l9ouhbvhr1.apps.googleusercontent.com <b>(NOT A REAL ID, DO NOT USE)</b>
 
 <b>API_KEY will look like this:</b>
-AIzaSyD0JV78vSPTh50sLUo51wu-jdhAOdCm_8w (NOT A REAL KEY, DO NOT USE)
+AIzaSyD0JV78vSPTh50sLUo51wu-jdhAOdCm_8w <b>(NOT A REAL KEY, DO NOT USE)</b>
 
 You also need to add a javascript origin (e.g. http://127.0.0.1:8082) 
 (the port depends on what SAP Lumira Desktop is using could also be: 64783, etc , you can look up the port by searching the 'general.persistent' file in the '.sapvi/preferences/' directory for 'preferredHttpPort' )
