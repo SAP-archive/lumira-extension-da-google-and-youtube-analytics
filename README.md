@@ -9,16 +9,25 @@ Install the  Extension
 * Select the zip file from `\target`
 * Restart SAP Lumira Desktop
 * If you do not have a Google API Client ID and API Key (required) please create them:
-	Go to: https://console.developers.google.com/
+by going to: https://console.developers.google.com/
+
 You will need to create a Public API access Key and Create a Client ID for web applications.
+
+CLIENT_ID will look like this:
+316210287153-i8h2lo6c0r03dv1gv6nt00l9ouhbvhr1.apps.googleusercontent.com (NOT A REAL ID, DO NOT USE)
+
+API_KEY will look like this:
+AIzaSyD0JV78vSPTh50sLUo51wu-jdhAOdCm_8w (NOT A REAL KEY, DO NOT USE)
 
 You also need to add a javascript origin (e.g. http://127.0.0.1:8082) 
 (the port depends on what SAP Lumira Desktop is using could also be: 64783, etc , you can look up the port by searching the 'general.persistent' file in the '.sapvi/preferences/' directory for 'preferredHttpPort' )
 
-Once you have both add them in:
+Once you have both the API KEY and CLIENT ID add them in:
 
 ‘WebContent\com\sap\bi\da\extension\googleanalyticsextension\ExtensionUtils.js’ like this:
 ![My image](https://github.com/SAP/lumira-extension-da-google-and-youtube-analytics/blob/master/imagesforreadme/s9.png)
+
+Now you are ready to enjoy the extension!
 
 * Back in SAP Lumira Desktop Select `File > New Dataset`
 * Select `Google Analytics and YouTube Analytics` from the list of connectors:
