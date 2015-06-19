@@ -18,7 +18,7 @@ You will need to create a Public API access Key and Create a Client ID for web a
 <b>API_KEY will look like this:</b>
 'AIzaSyD0JV78vSPTh50sLUo51wu-jdhAOdCm_8w' <b>(NOT A REAL KEY, DO NOT USE)</b>
 
-You also need to add a javascript origin (e.g. http://127.0.0.1:8082) 
+You also need to add a javascript origin under the "Client ID for web application" section (e.g. http://127.0.0.1:8082) 
 (the port depends on what SAP Lumira Desktop is using could also be: 64783, etc , you can look up the port by searching the 'general.persistent' file in the '.sapvi/preferences/' directory for 'preferredHttpPort' )
 
 Once you have both the API KEY and CLIENT ID add them in:
