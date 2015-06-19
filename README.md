@@ -55,10 +55,11 @@ Now you are ready to enjoy the extension!
 
 •	If you picked YouTube the metadata will look like this:
  ![My image](https://github.com/SAP/lumira-extension-da-google-and-youtube-analytics/blob/master/imagesforreadme/s7.png)
+For info on the types of queries you can run please go to: (https://developers.google.com/youtube/analytics/v1/available_reports)
  * Click OK to acquire the data and create a new visualization:
 ![My image](https://github.com/SAP/lumira-extension-da-google-and-youtube-analytics/blob/master/imagesforreadme/s8.png)
 
-For More info on the types of queries you can run please go to: (https://developers.google.com/youtube/analytics/v1/available_reports)
+
 
 
 
@@ -67,10 +68,7 @@ Development Environment Setup
 * Requirements
  + SAP Lumira 1.25
  + Java Development Kit 7, Update 75 or later
- + Eclipse Luna IDE for Java EE Developers
-* Edit `docs\eclipse.bat`
- + Set `ECLIPSE_HOME` to your eclipse installation
- + Set `JAVA_HOME` to your JDK installation
+ + Eclipse IDE for Java EE Developers
 
 Build the Extension
 ------------------
