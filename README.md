@@ -8,8 +8,7 @@ Install the  Extension
 * Click `Manual Installation`
 * Select the zip file from `\target`
 * Restart SAP Lumira Desktop
-* If you do not have a Google API Client ID and API Key (required) please create them:
-by going to: https://console.developers.google.com/
+* If you do not have a Google API Client ID and API Key (required) please create them by going to: https://console.developers.google.com/
 
 You will need to create a Public API access Key and Create a Client ID for web applications.
 
