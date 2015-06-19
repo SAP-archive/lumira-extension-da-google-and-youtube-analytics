@@ -13,7 +13,8 @@ Install the  Extension
 You will need to create a Public API access Key and Create a Client ID for web applications.
 
 You also need to add a javascript origin (e.g. http://127.0.0.1:8082) 
-(the port depends on what SAP Lumira Desktop is using could also be: 64783)
+(the port depends on what SAP Lumira Desktop is using could also be: 64783, etc , you can look up the port by searching the 'general.persistent' file in the '.sapvi/preferences/' directory for 'preferredHttpPort' )
+
 Once you have both add them in:
 
 ‘WebContent\com\sap\bi\da\extension\googleanalyticsextension\ExtensionUtils.js’ like this:
