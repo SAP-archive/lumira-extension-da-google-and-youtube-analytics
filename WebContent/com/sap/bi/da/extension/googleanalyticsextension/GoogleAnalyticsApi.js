@@ -13,15 +13,15 @@ define(function() {
     		var that = this;
     		readyFunc = clientFunc;
     		if (typeof(gapi) != 'undefined') {
-    			if (typeof(gapi.client!='undefined') && typeof(gapi.client.analytics!='undefined')) {
+/*    			if (typeof(gapi.client!='undefined') && typeof(gapi.client.analytics!='undefined')) {
     				if (_isSessionValid())
     					readyFunc();
     				else 
     					this.checkAuth();
     			}
-    			else {
+    			else {*/
     				this.checkAuth();
-    			}
+    			//}
     		}
     		else {
         		window._ga_client_load_callback = function() {
