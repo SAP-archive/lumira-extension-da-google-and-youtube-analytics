@@ -6,3 +6,5 @@
 # Package Files #
 *.war
 *.ear
+/.idea/
+*.iml

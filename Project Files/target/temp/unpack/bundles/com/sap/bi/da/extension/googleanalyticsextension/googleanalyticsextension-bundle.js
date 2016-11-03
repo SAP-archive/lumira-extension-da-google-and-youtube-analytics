@@ -17,7 +17,7 @@ Copyright 2015, SAP SE
 define([], function() {
     return sap.bi.framework.declareBundle({
         "id" : "com.sap.bi.da.extension.googleanalyticsextension",
-        "version" : "REPLACE_VERSION",
+        "version" : "1.25.3.201611031253",
          "components" : [{
             "id" : "com.sap.bi.da.extension.googleanalyticsextension",
             "provide" : "sap.bi.da.extension.client",

@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.prefs.Preferences;
 
 import com.sap.bi.da.extension.sdk.DAEWorkflow;
 import com.sap.bi.da.extension.sdk.DAException;
@@ -46,6 +47,7 @@ public class GoogleAnalyticsExtension implements IDAExtension {
     @Override
     public void initialize(IDAEEnvironment environment) {
     	this.environment = environment;
+
     	// This function will be called when the extension is initially loaded
     	// This gives the extension to perform initialization steps, according to the provided environment
     }
@@ -138,7 +140,6 @@ public class GoogleAnalyticsExtension implements IDAExtension {
                 String metadata = infoJSON.getString("csvHeader");
                 return metadata;
             } catch (Exception e) {
-            	
                 throw new DAException("meta-"+e.toString(), e);
             }
         }
@@ -155,7 +156,10 @@ public class GoogleAnalyticsExtension implements IDAExtension {
     }
 
     private class GoogleAnalyticsExtensionClientRequestJob implements IDAEClientRequestJob {
-
+        private static final String API_KEY = "ga_api_key";
+        private static final String CLIENT_ID = "ga_client_id";
+        private static final String GET_VALUES = "get_ga_values";
+        private static final String SET_VALUES = "set_ga_values";
         String request;
 
         GoogleAnalyticsExtensionClientRequestJob(String request) {
@@ -164,10 +168,15 @@ public class GoogleAnalyticsExtension implements IDAExtension {
 
         @Override
         public String execute(IDAEProgress callback) throws DAException {
-            if ("ping".equals(request)) {
-                return "pong";
+            String[] keys = request.split(",");
+            Preferences prefs = Preferences.userNodeForPackage(GoogleAnalyticsExtension.class);
+            if (keys[0].equals(GET_VALUES)) {
+                return prefs.get(API_KEY, "") + "," + prefs.get(CLIENT_ID, "");
+            } else if (keys[0].equals(SET_VALUES)) {
+                prefs.put(API_KEY, keys[1]);
+                prefs.put(CLIENT_ID, keys[2]);
             }
-            return null;
+            return "";
         }
 
         @Override
