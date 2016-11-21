@@ -1,8 +1,10 @@
-/bin/
-/target/
+/Project Files/bin/
+/Project Files/target/
 
 *.class
 
 # Package Files #
 *.war
 *.ear
+/.idea/
+*.iml

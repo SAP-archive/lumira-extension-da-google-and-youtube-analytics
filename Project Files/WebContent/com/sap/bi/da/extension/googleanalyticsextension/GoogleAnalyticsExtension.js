@@ -4,14 +4,10 @@ jQuery.sap.includeStyleSheet(sap.ui.resource("com.sap.bi.da.extension.googleanal
 define(["service!sap.bi.da.extension.sdk.clientRequestService", "GoogleAnalyticsExtensionUIController","GoogleAnalyticsApi","tree"], function (ClientRequestService, GoogleAnalyticsExtensionUIController, GoogleAnalyticsApi, tree) {
     "use strict";
     
-    var ExtensionUtils = new com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils();
-    
     function GoogleAnalyticsExtension() {
 
         var EXTENSION_ID = "com.sap.bi.da.extension.googleanalyticsextension";
-    	var gaApi = new GoogleAnalyticsApi(ExtensionUtils);
 
-    	
         var fServiceCall = function(request, fSuccess, fFailure) {
         	// The ClientRequestService is a way for the extension to communicate to its Java backend
         	// request will be passed to getClientRequestJob()
@@ -20,6 +16,9 @@ define(["service!sap.bi.da.extension.sdk.clientRequestService", "GoogleAnalytics
         	ClientRequestService.callClientRequestService(EXTENSION_ID, request, fSuccess, fFailure);
         };
 
+        var ExtensionUtils = new com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils(fServiceCall);
+
+        var gaApi = new GoogleAnalyticsApi(ExtensionUtils);
         var createGoogleAnalyticsExtensionUIWorkflow = function(acquisitionState, workflow) {
             var oDeferred = new jQuery.Deferred();
             
@@ -42,7 +41,7 @@ define(["service!sap.bi.da.extension.sdk.clientRequestService", "GoogleAnalytics
         			gaApi.getYTChannelId(function(channels){
         				
         				for (var i=0;i<channels.length;++i) {
-        					oCombo.addItem(new sap.ui.core.ListItem("yt"+channels[i].id,{text:"YouTube Analytics", additionalText: "Channel:"+channels[i].id}));
+        					oCombo.addItem(new sap.ui.core.ListItem("yt"+channels[i].id,{text:"YouTube Analytics", additionalText: "Channel: " + channels[i].brandingSettings.channel.title}));
                 		}
         				
         				if (acquisitionState.info) {

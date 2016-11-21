@@ -1,15 +1,45 @@
 jQuery.sap.declare("com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils");
 
-com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils = function() {};
+com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils = function(fServiceCall) {
+	this.serviceCall = fServiceCall;
+	var that = this;
 
-com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.getApiKey = function()
-{
-    return 'your api key'; //your api key from http://developers.google.com/console
+	var keysCalbackFailure = function(e) {
+
+	}
+
+	var keysCallback = function(data) {
+		var keys = data.split(",");
+		that.setApiKey(keys[0]);
+		that.setClientId(keys[1]);
+	}
+
+	fServiceCall("get_ga_values", keysCallback, keysCalbackFailure);
 };
+
+com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.getApiKey = function() {
+	return this.apiKey;
+};
+
 com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.getClientId = function()
 {
-    return 'your client id'; //your client id from http://developers.google.com/console
+    return this.clientId;
 };
+
+com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.setApiKey = function(apiKey) {
+	this.apiKey = apiKey;
+};
+
+com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.setClientId = function(clientId) {
+	this.clientId = clientId;
+};
+
+com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.persistNewKeys = function(apiKey, clientId) {
+	this.setApiKey(apiKey);
+	this.setClientId(clientId);
+	this.serviceCall("set_ga_values," + apiKey + "," + clientId, null, null);
+}
+
 com.sap.bi.da.extension.googleanalyticsextension.ExtensionUtils.prototype.getYouTubeMetadata = function()
 {
 	return { "version":"v1","items":[

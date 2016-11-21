@@ -164,6 +164,59 @@ define(function() {
             dialog.close();
         };
 
+        var buttonChangeApiKeyPressed = function() {
+			var apiKeyLayout = new sap.ui.commons.layout.MatrixLayout({
+				layoutFixed : true,
+				columns : 2,
+				width : "100%",
+				height : "100%",
+				widths : [ "30%", "70%" ]
+			});
+			var apiKeyTxt = new sap.ui.commons.TextField({"width": "100%"});
+			apiKeyLayout.createRow(new sap.ui.commons.Label({"text": "API Key:"}), apiKeyTxt);
+			var clientIdTxt = new sap.ui.commons.TextField({"width": "100%"});
+			apiKeyLayout.createRow(new sap.ui.commons.Label({"text": "Client ID:"}), clientIdTxt);
+			apiKeyLayout.createRow(new sap.ui.commons.Label({"text": "JavaScript Origin:"}), new sap.ui.commons.Label({"text": "http://" + window.location.host}));
+			var apiKeyOkButtonPressed = function() {
+				ExtensionUtils.persistNewKeys(apiKeyTxt.getValue(), clientIdTxt.getValue());
+				gapi.client.setApiKey(ExtensionUtils.getApiKey());
+				gaApi.checkAuth();
+				apiKeyDialog.close();
+			};
+			var apiKeyCancelButtonPressed = function() {
+				apiKeyDialog.close();
+			};
+			var apiKeyOnClosed = function() {
+
+			};
+			var apiKeyOkButton = new sap.ui.commons.Button({
+				press : [ apiKeyOkButtonPressed, this ],
+				text : "OK",
+				tooltip : "OK"
+			});
+
+			var apiKeyCancelButton = new sap.ui.commons.Button({
+				press : [ apiKeyCancelButtonPressed, this ],
+				text : "Cancel",
+				tooltip : "cancel"
+			});
+
+			var apiKeyDialog = new sap.ui.commons.Dialog({
+				width : "500px",
+				height : "260px",
+				modal : true,
+				resizable : false,
+				closed : apiKeyOnClosed,
+				content: [apiKeyLayout],
+				buttons : [apiKeyOkButton, apiKeyCancelButton]
+			});
+			apiKeyDialog.setTitle("Please enter your API Key and Client ID");
+			apiKeyTxt.setValue(ExtensionUtils.getApiKey());
+			clientIdTxt.setValue(ExtensionUtils.getClientId());
+			apiKeyDialog.open();
+		};
+
+
         var buttonOKPressed = function() {
         	
         	var i=0;
@@ -301,6 +354,12 @@ define(function() {
             tooltip : "Cancel"
         }).addStyleClass(sap.ui.commons.ButtonStyle.Default);
 
+		var apiKeyButton = new sap.ui.commons.Button({
+			press: [ buttonChangeApiKeyPressed, this],
+			text : "Change API Key",
+			tooltip : "Change API Key and Client ID"
+		});
+
         var onClosed = function() {
             if (oDeferred.state() === "pending") {
                 oDeferred.reject();
@@ -333,7 +392,7 @@ define(function() {
             resizable : false,
             closed : onClosed,
             content: [mGAMetaViewLayout],
-            buttons : [okButton, cancelButton]
+            buttons : [okButton, apiKeyButton, cancelButton]
         }).addStyleClass("GaDialog");
         dialog.setTitle("Google Analytics Reporting: " + envProperties.datasetName);
         dialog.open();
