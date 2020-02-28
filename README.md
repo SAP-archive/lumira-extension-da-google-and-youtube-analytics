@@ -1,3 +1,8 @@
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
+
+# Important Notice
+We have decided to stop the maintenance of this public GitHub repository.
+
 This extension provides a working example of consuming GoogleAnalytics Core Reporting and YouTube Analytic Reports in Lumira 1.25 and above.
 
 
